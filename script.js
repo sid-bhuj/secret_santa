@@ -1,5 +1,5 @@
 let participants = [];
-let pairs = new Map(); // Use a Map to store and persist pairings
+let pairs = new Map(); // Map to store unique pairings
 
 // Load participants from a JSON file
 fetch('./participants.json')
