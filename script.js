@@ -112,12 +112,22 @@ function revealSecretSanta() {
 }
 
 // Dark Mode Toggle
-document.getElementById("dark-mode-switch").addEventListener("change", event => {
-    console.log("Dark mode toggle:", event.target.checked); // Debug log
-    const elementsToToggle = document.querySelectorAll("button, select");
-    
-    document.body.classList.toggle("dark-mode", event.target.checked);
-    elementsToToggle.forEach(el => el.classList.toggle("dark-mode", event.target.checked));
+document.addEventListener("DOMContentLoaded", () => {
+    // Enable dark mode by default
+    document.body.classList.add("dark-mode");
+
+    // Ensure the dark mode toggle reflects the default state
+    const darkModeSwitch = document.getElementById("dark-mode-switch");
+    darkModeSwitch.checked = true;
+
+    // Attach event listener for the dark mode toggle
+    darkModeSwitch.addEventListener("change", event => {
+        console.log("Dark mode toggle:", event.target.checked); // Debug log
+        const elementsToToggle = document.querySelectorAll("button, select");
+
+        document.body.classList.toggle("dark-mode", event.target.checked);
+        elementsToToggle.forEach(el => el.classList.toggle("dark-mode", event.target.checked));
+    });
 });
 
 // Attach the event listener to the reveal button
