@@ -1,17 +1,15 @@
 let participants = [];
 let pairs = [];
 
-// Add a participant
-function addParticipant() {
-    const nameInput = document.getElementById("name");
-    const name = nameInput.value.trim();
-    if (name && !participants.includes(name)) {
-        participants.push(name);
+// Load participants from a JSON file
+fetch('participants.json')
+    .then(response => response.json())
+    .then(data => {
+        participants = data.participants;
         displayParticipants();
         updateDropdown();
-        nameInput.value = '';
-    }
-}
+    })
+    .catch(error => console.error('Error loading participants:', error));
 
 // Display the list of participants
 function displayParticipants() {
