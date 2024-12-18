@@ -71,10 +71,16 @@ function handleSelection(selectedName) {
     const dropdown = document.getElementById("participant-dropdown");
 
     if (firstSelection === null) {
+        // Store the first valid selection
         firstSelection = selectedName;
+        console.log("First selection set to:", firstSelection); // Debugging log
     } else if (selectedName !== firstSelection) {
+        // Revert the dropdown value to the first selection
         dropdown.value = firstSelection;
+
+        // Show the "No cheating!" alert
         alert("No cheating!");
+        console.log("Cheating attempt detected. Reverting to:", firstSelection); // Debugging log
     }
 }
 
