@@ -70,7 +70,6 @@ function handleSelection(selectedName) {
     }
 }
 
-// Reveal the Secret Santa for the selected participant
 function revealSecretSanta() {
     const dropdown = document.getElementById("participant-dropdown");
     const selectedName = dropdown.value;
@@ -80,18 +79,23 @@ function revealSecretSanta() {
         return;
     }
 
+    // Find the pair for the selected participant
     const pair = pairs.find(p => p.giver === selectedName);
+
     if (pair) {
         const result = document.getElementById("secret-santa-result");
         result.textContent = `🎉 Your Secret Santa is: ${pair.receiver} 🎁`;
 
-        // Disable the dropdown and button after revealing
+        // Optional: Disable dropdown and button after revealing
         dropdown.disabled = true;
         document.querySelector("button[onclick='revealSecretSanta()']").disabled = true;
 
-        // Optional: Clear result after a timeout for privacy
+        // Optional: Clear the result after a timeout
         setTimeout(() => {
             result.textContent = '';
         }, 10000);
+    } else {
+        alert("Error: Could not find a Secret Santa for the selected participant.");
     }
 }
+
