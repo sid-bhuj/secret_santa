@@ -6,21 +6,9 @@ fetch('participants.json')
     .then(response => response.json())
     .then(data => {
         participants = data.participants;
-        displayParticipants();
         updateDropdown();
     })
     .catch(error => console.error('Error loading participants:', error));
-
-// Display the list of participants
-function displayParticipants() {
-    const participantList = document.getElementById("participants");
-    participantList.innerHTML = '';
-    participants.forEach(participant => {
-        const li = document.createElement("li");
-        li.textContent = participant;
-        participantList.appendChild(li);
-    });
-}
 
 // Update the dropdown with participant names
 function updateDropdown() {
