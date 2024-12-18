@@ -2,13 +2,19 @@ let participants = [];
 let pairs = [];
 
 // Load participants from a JSON file
-fetch('participants.json')
-    .then(response => response.json())
+fetch('./participants.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         participants = data.participants;
         updateDropdown();
     })
     .catch(error => console.error('Error loading participants:', error));
+
 
 // Update the dropdown with participant names
 function updateDropdown() {
