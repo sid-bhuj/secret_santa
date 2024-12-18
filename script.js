@@ -1,5 +1,5 @@
 let participants = [];
-let pairs = new Map(); // Map to store unique pairings
+let pairs = new Map(); // Use a Map to store persistent pairings
 
 // Load participants from a JSON file
 fetch('./participants.json')
@@ -28,27 +28,23 @@ function generatePairs() {
         return;
     }
 
-    const shuffledReceivers = [...participants];
-    let attempts = 0;
-    const maxAttempts = 100;
+    const availableRecipients = [...participants];
+    participants.forEach(giver => {
+        // Filter out the giver to avoid self-assignment
+        const eligibleRecipients = availableRecipients.filter(recipient => recipient !== giver);
 
-    // Retry until valid pairs are created
-    do {
-        attempts++;
-        shuffledReceivers.sort(() => Math.random() - 0.5);
-    } while (
-        attempts < maxAttempts &&
-        participants.some((giver, index) => giver === shuffledReceivers[index])
-    );
+        if (eligibleRecipients.length === 0) {
+            alert("Pairing failed. Please reload and try again.");
+            console.error("No eligible recipients available for:", giver);
+            return;
+        }
 
-    if (attempts >= maxAttempts) {
-        alert("Failed to generate valid pairs after multiple attempts. Try again.");
-        return;
-    }
+        // Randomly select a recipient
+        const recipient = eligibleRecipients[Math.floor(Math.random() * eligibleRecipients.length)];
 
-    // Store pairs in the Map
-    participants.forEach((giver, index) => {
-        pairs.set(giver, shuffledReceivers[index]);
+        // Assign the pair and remove the recipient from the available pool
+        pairs.set(giver, recipient);
+        availableRecipients.splice(availableRecipients.indexOf(recipient), 1);
     });
 
     console.log("Pairs generated successfully:", [...pairs.entries()]); // Debugging log
