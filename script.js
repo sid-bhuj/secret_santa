@@ -24,19 +24,20 @@ function generatePairs() {
         return;
     }
 
-    const givers = [...participants];
-    const receivers = [...participants];
+    const givers = [...participants]; // Copy of participants
+    const receivers = [...participants]; // Copy of participants
 
+    pairs = []; // Clear any existing pairs
+
+    // Shuffle the receivers list to create random matches
     do {
-        pairs = [];
-        const shuffled = receivers.sort(() => Math.random() - 0.5);
-        for (let i = 0; i < givers.length; i++) {
-            if (givers[i] !== shuffled[i]) {
-                pairs.push({ giver: givers[i], receiver: shuffled[i] });
-            }
-        }
-    } while (pairs.length !== givers.length);
+        const shuffledReceivers = receivers.sort(() => Math.random() - 0.5);
+        pairs = givers.map((giver, index) => {
+            return { giver: giver, receiver: shuffledReceivers[index] };
+        });
+    } while (pairs.some(pair => pair.giver === pair.receiver)); // Ensure no one is their own Secret Santa
 }
+
 
 // Update the dropdown with participant names
 function updateDropdown() {
