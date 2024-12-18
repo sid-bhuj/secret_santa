@@ -4,31 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secret Santa Generator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>🎅 C9 - Secret Santa Celebrations! 🎁</h1>
-    
+    <header>
+        <h1>🎅 C9 - Secret Santa Celebrations! 🎁</h1>
+    </header>
+
     <!-- Banner -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Secret_Santa.jpg" alt="Festive Banner" class="banner" />
-    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Secret_Santa.jpg" alt="Festive Banner" class="banner">
+
     <!-- Secret Santa Section -->
     <div id="app">
         <h2>Find Your Secret Santa</h2>
-        
+
         <!-- Participant Dropdown -->
         <select id="participant-dropdown">
             <option value="" disabled selected>Select your name</option>
         </select>
-        
+
         <!-- Button to Reveal Secret Santa -->
-        <button onclick="revealSecretSanta()">Find your Secret Santa</button>
-        
+        <button id="reveal-btn">Find your Secret Santa</button>
+
         <!-- Display Result -->
         <p id="secret-santa-result"></p>
+
+        <!-- Error Messages (Hidden by Default) -->
+        <p id="error-message" class="error" style="display: none;"></p>
+
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <label for="dark-mode-switch">Enable Dark Mode</label>
+            <input type="checkbox" id="dark-mode-switch">
+        </div>
     </div>
 
-    <!-- Script inclusion -->
     <script src="script.js"></script>
 </body>
 </html>
