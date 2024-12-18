@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secret Santa Generator</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <h1>🎅 C9 - Secret Santa Celebrations! 🎁</h1>
+    
     <!-- Banner -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Secret_Santa.jpg" alt="Festive Banner" class="banner" />
-
+    
     <!-- Secret Santa Section -->
     <div id="app">
-    <h2>Find Your Secret Santa</h2>
-    <select id="participant-dropdown">
-        <option value="" disabled selected>Select your name</option>
-    </select>
-    <button onclick="revealSecretSanta()">Find your Secret Santa</button>
-    <p id="secret-santa-result"></p>
-</div>
+        <h2>Find Your Secret Santa</h2>
+        
+        <!-- Participant Dropdown -->
+        <select id="participant-dropdown">
+            <option value="" disabled selected>Select your name</option>
+        </select>
+        
+        <!-- Button to Reveal Secret Santa -->
+        <button onclick="revealSecretSanta()">Find your Secret Santa</button>
+        
+        <!-- Display Result -->
+        <p id="secret-santa-result"></p>
+    </div>
 
+    <!-- Script inclusion -->
     <script src="script.js"></script>
 </body>
 </html>
