@@ -54,6 +54,7 @@ function generatePairs() {
 function updateDropdown() {
     const dropdown = document.getElementById("participant-dropdown");
     dropdown.innerHTML = '<option value="" disabled selected>Select your name</option>';
+    console.log("Participants to populate dropdown:", participants); // Debugging line
     participants.forEach(participant => {
         const option = document.createElement("option");
         option.value = participant;
@@ -110,5 +111,10 @@ function revealSecretSanta() {
 
 // Dark Mode Toggle
 document.getElementById("dark-mode-switch").addEventListener("change", event => {
+    console.log("Dark mode toggle:", event.target.checked); // Debug log
+    const elementsToToggle = document.querySelectorAll("button, select");
+    
     document.body.classList.toggle("dark-mode", event.target.checked);
+    elementsToToggle.forEach(el => el.classList.toggle("dark-mode", event.target.checked));
 });
+
