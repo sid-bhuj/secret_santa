@@ -3,14 +3,19 @@ let pairs = [];
 let firstSelection = null; // Store the participant's first selection
 
 // Load participants from a JSON file
-fetch('./participants.json')
-    .then(response => response.json())
+fetch('./participants.json') // Ensure './' if in the same directory
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
-        participants = data.participants.map(p => p.name);
-        generatePairs();
+        participants = data.participants;
         updateDropdown();
     })
     .catch(error => console.error('Error loading participants:', error));
+
 
 // Generate Secret Santa pairs
 function generatePairs() {
