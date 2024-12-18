@@ -1,9 +1,11 @@
+/* Base Styling */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 h1 {
@@ -13,12 +15,12 @@ h1 {
 
 .banner {
     width: 100%;
-    max-width: 800px; /* Banner width on larger screens */
+    max-width: 800px;
     height: auto;
     display: block;
     margin: 20px auto;
-    object-fit: cover; /* Ensures proportional scaling */
-    border-radius: 10px; /* Optional: Rounded edges */
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 #app {
@@ -28,7 +30,33 @@ h1 {
 select, button {
     padding: 10px;
     font-size: 16px;
-    margin: 10px;
+    margin: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+select:focus {
+    border-color: #d63384;
+    outline: none;
 }
 
 #secret-santa-result {
@@ -38,11 +66,33 @@ select, button {
     color: #28a745;
 }
 
+.error {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+button.dark-mode {
+    background-color: #444;
+    color: #ddd;
+}
+
+select.dark-mode {
+    background-color: #555;
+    color: white;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .banner {
-        max-width: 90%; /* Scale down on mobile */
-        max-height: 300px; /* Ensure it doesn’t take too much space */
+        max-width: 90%;
+        max-height: 300px;
     }
 
     h1 {
