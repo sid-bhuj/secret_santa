@@ -38,4 +38,76 @@ function generatePairs() {
         shuffledReceivers.sort(() => Math.random() - 0.5);
     } while (
         attempts < maxAttempts &&
-        participants.some((giver, index) => giver ==
+        participants.some((giver, index) => giver === shuffledReceivers[index])
+    );
+
+    if (attempts >= maxAttempts) {
+        alert("Failed to generate valid pairs after multiple attempts. Try again.");
+        return;
+    }
+
+    // Store pairs in the Map
+    participants.forEach((giver, index) => {
+        pairs.set(giver, shuffledReceivers[index]);
+    });
+
+    console.log("Pairs generated successfully:", [...pairs.entries()]); // Debugging log
+}
+
+// Update the dropdown with participant names
+function updateDropdown() {
+    const dropdown = document.getElementById("participant-dropdown");
+    dropdown.innerHTML = '<option value="" disabled selected>Select your name</option>';
+    participants.forEach(participant => {
+        const option = document.createElement("option");
+        option.value = participant;
+        option.textContent = participant;
+        dropdown.appendChild(option);
+    });
+    console.log("Dropdown populated with participants:", participants); // Debugging log
+}
+
+// Reveal the recipient for the selected participant
+function revealSecretSanta() {
+    const dropdown = document.getElementById("participant-dropdown");
+    const selectedName = dropdown.value;
+
+    if (!selectedName) {
+        alert("Please select your name.");
+        return;
+    }
+
+    console.log("Selected name:", selectedName); // Debugging log
+
+    // Find the recipient for the selected participant
+    const recipient = pairs.get(selectedName);
+
+    if (recipient) {
+        const result = document.getElementById("secret-santa-result");
+        result.textContent = `🎉 You are Secret Santa for: ${recipient} 🎁`;
+
+        console.log(`${selectedName} is Secret Santa for ${recipient}`); // Debugging log
+    } else {
+        alert("Error: Could not find a recipient for the selected participant.");
+        console.log("No recipient found for:", selectedName); // Debugging log for missing recipient
+    }
+}
+
+// Dark Mode Toggle
+document.addEventListener("DOMContentLoaded", () => {
+    // Enable dark mode by default
+    document.body.classList.add("dark-mode");
+
+    // Ensure the dark mode toggle reflects the default state
+    const darkModeSwitch = document.getElementById("dark-mode-switch");
+    darkModeSwitch.checked = true;
+
+    // Attach event listener for the dark mode toggle
+    darkModeSwitch.addEventListener("change", event => {
+        console.log("Dark mode toggle:", event.target.checked); // Debug log
+        document.body.classList.toggle("dark-mode", event.target.checked);
+    });
+});
+
+// Attach the event listener to the reveal button
+document.getElementById("reveal-btn").addEventListener("click", revealSecretSanta);
