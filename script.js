@@ -64,6 +64,9 @@ function updateDropdown() {
         dropdown.appendChild(option);
     });
     console.log("Dropdown populated with participants:", participants); // Debugging log
+
+    // Attach event listener for selection handling
+    dropdown.addEventListener("change", event => handleSelection(event.target.value));
 }
 
 // Handle dropdown selection to prevent cheating
