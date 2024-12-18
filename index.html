@@ -5,14 +5,26 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Secret Santa Generator</h1>
+    <h1>🎅 Secret Santa Generator 🎁</h1>
     <div id="app">
+        <!-- Adding festive image -->
+        <img src="https://example.com/festive-image.jpg" alt="Festive" class="banner" />
+
+        <!-- Section to add participants -->
+        <h2>Add Participants</h2>
         <input type="text" id="name" placeholder="Enter name" />
         <button onclick="addParticipant()">Add Participant</button>
-        <button onclick="generatePairs()">Generate Pairs</button>
         <ul id="participants"></ul>
-        <div id="results"></div>
+
+        <!-- Secret Santa Section -->
+        <h2>Find Your Secret Santa</h2>
+        <select id="participant-dropdown">
+            <option value="" disabled selected>Select your name</option>
+        </select>
+        <button onclick="revealSecretSanta()">Find Your Secret Santa</button>
+        <p id="secret-santa-result"></p>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
