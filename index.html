@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://upload.wikimedia.org; script-src 'self'; style-src 'self';">
     <title>Secret Santa Generator</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensure the reveal button remains blue in both light and dark mode */
+        button#reveal-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button#reveal-btn:hover {
+            background-color: #0056b3;
+        }
+
+        button#reveal-btn:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>🎅 Secret Santa Celebrations! 🎁</h1>
     </header>
-<p>Hosted by Siddharth & Nidhi </p>
+    <p>Hosted by Siddharth & Nidhi</p>
 
     <!-- Banner -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Secret_Santa.jpg" alt="Festive Banner" class="banner">
 
     <!-- Secret Santa Section -->
     <div id="app">
-        <h2>Find out whom to send out presents </h2>
+        <h2>Find out whom to send out presents</h2>
         <!-- Participant Dropdown -->
         <select id="participant-dropdown">
             <option value="" disabled selected>Select your name</option>
